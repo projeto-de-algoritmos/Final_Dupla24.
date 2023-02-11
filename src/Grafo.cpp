@@ -25,7 +25,6 @@ int median(vector<int> v){
     if(sz(v) < 3) return v[0];
     vector<int> medians;
     for(int j = 0; j < sz(v); j += 5){
-        int cnt = 5;
         if(j+5 > sz(v)){
             sort(v.begin()+j, v.end());
             medians.pb(v[j + (sz(v) - j)/2]);
