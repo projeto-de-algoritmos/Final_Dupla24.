@@ -21,6 +21,38 @@ bool Grafo::haveNeighboor(int v1, int v2) {
     return false;
 }
 
+int median(vector<int> v){
+    if(sz(v) < 3) return v[0];
+    vector<int> medians;
+    for(int j = 0; j < sz(v); j += 5){
+        int cnt = 5;
+        if(j+5 > sz(v)){
+            sort(v.begin()+j, v.end());
+            medians.pb(v[j + (sz(v) - j)/2]);
+        }else{
+            sort(v.begin()+j, v.begin()+j+5);
+            medians.pb(v[j+2]);
+        }
+    }
+    return median(medians);
+}
+
+int getKth(vector<int> v, int k){
+    if(sz(v) == 1) return v[0];         //implicitly k = 0
+    if(sz(v) == 2){
+        if(v[0] > v[1]) swap(v[0], v[1]);
+        return v[k-1];
+    }
+    int med = median(v);
+    vector<int> lft, rgt;
+    for(int j = 0; j < sz(v); j++)
+        if(v[j] < med) lft.pb(v[j]);
+        else rgt.pb(v[j]);
+    if(k > sz(lft)+1) return getKth(rgt, k-sz(lft));
+    if(k == sz(lft)+1) return med;
+    return getKth(lft, k);
+}
+
 void Grafo::dfs(int v) {
     stack<int> pilha;
     bool visitados[V]; //vetor de visitados
@@ -33,14 +65,22 @@ void Grafo::dfs(int v) {
     for(int i = 0; i< V ; i++)
         visitados[i] = false;
 
-    cout << animais.at(aferido)->getName() << " -- ";
+    cout << animais.at(aferido)->getName() <<  "(" << animais.at(aferido)->id << ")" << " -- ";
+
+    std::vector<int> tristeza;
+
+    tristeza.push_back(animais.at(aferido)->id);
 
     while (true) {
+
+
+
 
         if (!visitados[v]) {
             if(v != aferido) {
                 if(animais.at(v)->getBiomass() != 19)
-                cout << animais.at(v)->getName() << " -- ";
+                cout << animais.at(v)->getName() <<  "(" << animais.at(v)->id << ")" << " -- ";
+                tristeza.push_back(animais.at(v)->id);
             }
 
             ehvegetal = false;
@@ -65,9 +105,15 @@ void Grafo::dfs(int v) {
                 break;
             v = pilha.top();
             if (ehvegetal == false) {
-                cout << "Vegetais" << endl;
+                cout << "Vegetais" <<  "(" << 30000 << ")" << endl;
                 ehvegetal = true;
-                    cout << animais.at(aferido)->getName() << " -- ";
+                tristeza.push_back(30000);
+                int k;
+	            cin >> k;
+	            cout << "Mediana: " << getKth(tristeza, k) << endl;;
+                tristeza.clear();
+                tristeza.push_back(animais.at(aferido)->id);
+                cout << animais.at(aferido)->getName() <<  "(" << animais.at(aferido)->id << ")" << " -- ";
             }
         }
 

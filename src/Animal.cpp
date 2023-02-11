@@ -9,10 +9,11 @@ Animal::Animal() {
 
 }
 
-Animal::Animal(std::string name, std::string type_consumer, int biomass) {
+Animal::Animal(std::string name, std::string type_consumer, int biomass, int id) {
     this->name = name;
     this->type_consumer = type_consumer;
     this->biomass = biomass;
+    this->id = id;
 }
 
 Animal::~Animal() {};

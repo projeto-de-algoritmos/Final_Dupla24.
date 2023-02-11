@@ -11,7 +11,7 @@ private:
 
 public:
     Animal();
-    Animal(std::string name, std::string type_consumer, int biomass);
+    Animal(std::string name, std::string type_consumer, int biomass, int id);
     ~Animal();
     std::string getName();
 
@@ -24,5 +24,8 @@ public:
     int getBiomass();
 
     void setBiomass(int biomass);
+
+    int id;
+
 };
 

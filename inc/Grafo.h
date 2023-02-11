@@ -9,6 +9,13 @@
 #include <stack> // pilha para usar na DFS
 #include <vector>
 #include "Animal.h"
+#include "Mediana.h"
+
+typedef long long int ll;
+#define mp make_pair
+#define pb push_back
+#define sz(v) (int)v.size()
+#define pii pair<int, int>
 
 using namespace std;
 

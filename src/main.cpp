@@ -2,6 +2,7 @@
 #include <vector>
 #include "Animal.h"
 #include "Grafo.h"
+#include "Mediana.h"
 
 int main() {
 
@@ -9,28 +10,27 @@ int main() {
 
     Grafo grafo(20);
 
-    vector <Animal *> animais;
 
-    grafo.animais.push_back(new Animal("Onça-pintada", "Carnivoro", 0));
-    grafo.animais.push_back(new Animal("Macaco", "Herbivoro", 1));
-    grafo.animais.push_back(new Animal( "Dourado", "Herbivoro", 2));
-    grafo.animais.push_back(new Animal( "Capivara","Herbivoro",3));
-    grafo.animais.push_back(new Animal("Veado-campeiro","Herbivoro",4));
-    grafo.animais.push_back(new Animal("Piranha","Carnivoro", 5));
-    grafo.animais.push_back(new Animal("Anta","Herbivoro",6));
-    grafo.animais.push_back(new Animal("Jacaré","Carnivoro",7));
-    grafo.animais.push_back(new Animal("Tucano","Herbivoro",8));
-    grafo.animais.push_back(new Animal("Tuiuiú","Herbivoro",9));
-    grafo.animais.push_back(new Animal("Sucuri","Carnivoro",10));
-    grafo.animais.push_back(new Animal("Colhereiro","Herbivoro",11));
-    grafo.animais.push_back(new Animal("Ema","Carnivoro",12));
-    grafo.animais.push_back(new Animal("Gavião","Carnivoro",13));
-    grafo.animais.push_back(new Animal("Sapo","Carnivoro",14));
-    grafo.animais.push_back(new Animal("Rato","Herbivoro",15));
-    grafo.animais.push_back(new Animal("Coruja-do-campo","Carnivoro",16));
-    grafo.animais.push_back(new Animal("Garfanhoto","Herbivoro",17));
-    grafo.animais.push_back(new Animal("Pica-pau periquito","Herbivoro",18));
-    grafo.animais.push_back(new Animal("Plantae","Autotrofos",19));
+    grafo.animais.push_back(new Animal("Onça-pintada", "Carnivoro", 0, 1200));
+    grafo.animais.push_back(new Animal("Macaco", "Herbivoro", 1, 3600));
+    grafo.animais.push_back(new Animal( "Dourado", "Herbivoro", 2, 3000));
+    grafo.animais.push_back(new Animal( "Capivara","Herbivoro",3, 4500));
+    grafo.animais.push_back(new Animal("Veado-campeiro","Herbivoro",4, 4200));
+    grafo.animais.push_back(new Animal("Piranha","Carnivoro", 5, 6000));
+    grafo.animais.push_back(new Animal("Anta","Herbivoro",6,2000));
+    grafo.animais.push_back(new Animal("Jacaré","Carnivoro",7,800));
+    grafo.animais.push_back(new Animal("Tucano","Herbivoro",8,6000));
+    grafo.animais.push_back(new Animal("Tuiuiú","Herbivoro",9,4000));
+    grafo.animais.push_back(new Animal("Sucuri","Carnivoro",10,1500));
+    grafo.animais.push_back(new Animal("Colhereiro","Herbivoro",11, 3000));
+    grafo.animais.push_back(new Animal("Ema","Carnivoro",12,2000));
+    grafo.animais.push_back(new Animal("Gavião","Carnivoro",13,600));
+    grafo.animais.push_back(new Animal("Sapo","Carnivoro",14,4300));
+    grafo.animais.push_back(new Animal("Rato","Herbivoro",15, 8000));
+    grafo.animais.push_back(new Animal("Coruja-do-campo","Carnivoro",16,3999));
+    grafo.animais.push_back(new Animal("Garfanhoto","Herbivoro",17,12000));
+    grafo.animais.push_back(new Animal("Pica-pau periquito","Herbivoro",18, 3456));
+    grafo.animais.push_back(new Animal("Plantae","Autotrofos",19,30000));
 
     grafo.addedge(0,1);
     grafo.addedge(0,2);
@@ -74,6 +74,7 @@ int main() {
     grafo.addedge(13,10);
     grafo.addedge(14,17);
 
+
     while(true) {
 
         cout << "." << endl;
@@ -84,8 +85,6 @@ int main() {
         cin >> escolha;
 
         if(escolha == 20) break;
-
-
 
         cout << "Grau do grafo em relação ao animal: " << grafo.getDegreeOut(escolha) << endl;
 
